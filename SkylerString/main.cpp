@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "SkylerString.hpp"
+#include "StringList.hpp"
 
 #define TEST(x) std::cerr << "L" <<  __LINE__ << " Test: " << x << " : "
 
@@ -603,6 +604,30 @@ void convertTest() {
     }
 }
 
+void stringListTest() {
+    StringList list;
+    list.append("hello");
+    list.append("there");
+    list.append("beautiful");
+    list.append("world");//3
+    list.append("what");
+    list.append("we");
+    list.append("live");
+    list.append("in");
+    list.append("world");//8
+    list.append("what");
+    list.append("we");
+    list.append("live");
+    list.append("in");//12
+    
+    int i = list.indexOf("world");
+    std::cerr << i << std::endl;
+    i = list.indexOfFirst("world");
+    std::cerr << i << std::endl;
+    i = list.indexOfLast("world");
+    std::cerr << i << std::endl;
+}
+
 int main(int argc, const char * argv[]) {
     setTest();
     equalityTest();
@@ -626,6 +651,8 @@ int main(int argc, const char * argv[]) {
     std::cerr << passes << "/" << tests << " passed." << std::endl;
     std::cerr << fails << "/" << tests << " failed." << std::endl;
     std::cerr << "=============================" << std::endl;
+    
+    stringListTest();
     
     return 0;
 }

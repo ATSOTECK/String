@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D40F2B321FCBF11A00A7B12F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D40F2B311FCBF11A00A7B12F /* main.cpp */; };
 		D40F2B3A1FCBF13600A7B12F /* SkylerString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D40F2B381FCBF13600A7B12F /* SkylerString.cpp */; };
+		D4ADCA461FDF8606000EEC10 /* StringList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4ADCA441FDF8606000EEC10 /* StringList.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		D40F2B311FCBF11A00A7B12F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D40F2B381FCBF13600A7B12F /* SkylerString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkylerString.cpp; sourceTree = "<group>"; };
 		D40F2B391FCBF13600A7B12F /* SkylerString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SkylerString.hpp; sourceTree = "<group>"; };
+		D4ADCA441FDF8606000EEC10 /* StringList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringList.cpp; sourceTree = "<group>"; };
+		D4ADCA451FDF8606000EEC10 /* StringList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringList.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				D40F2B311FCBF11A00A7B12F /* main.cpp */,
 				D40F2B381FCBF13600A7B12F /* SkylerString.cpp */,
 				D40F2B391FCBF13600A7B12F /* SkylerString.hpp */,
+				D4ADCA441FDF8606000EEC10 /* StringList.cpp */,
+				D4ADCA451FDF8606000EEC10 /* StringList.hpp */,
 			);
 			path = SkylerString;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			files = (
 				D40F2B3A1FCBF13600A7B12F /* SkylerString.cpp in Sources */,
 				D40F2B321FCBF11A00A7B12F /* main.cpp in Sources */,
+				D4ADCA461FDF8606000EEC10 /* StringList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +249,7 @@
 				D40F2B371FCBF11A00A7B12F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
