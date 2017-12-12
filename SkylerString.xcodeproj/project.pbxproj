@@ -1,0 +1,250 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D40F2B321FCBF11A00A7B12F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D40F2B311FCBF11A00A7B12F /* main.cpp */; };
+		D40F2B3A1FCBF13600A7B12F /* SkylerString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D40F2B381FCBF13600A7B12F /* SkylerString.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D40F2B2C1FCBF11A00A7B12F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D40F2B2E1FCBF11A00A7B12F /* SkylerString */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SkylerString; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40F2B311FCBF11A00A7B12F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D40F2B381FCBF13600A7B12F /* SkylerString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkylerString.cpp; sourceTree = "<group>"; };
+		D40F2B391FCBF13600A7B12F /* SkylerString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SkylerString.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D40F2B2B1FCBF11A00A7B12F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D40F2B251FCBF11A00A7B12F = {
+			isa = PBXGroup;
+			children = (
+				D40F2B301FCBF11A00A7B12F /* SkylerString */,
+				D40F2B2F1FCBF11A00A7B12F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D40F2B2F1FCBF11A00A7B12F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D40F2B2E1FCBF11A00A7B12F /* SkylerString */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D40F2B301FCBF11A00A7B12F /* SkylerString */ = {
+			isa = PBXGroup;
+			children = (
+				D40F2B311FCBF11A00A7B12F /* main.cpp */,
+				D40F2B381FCBF13600A7B12F /* SkylerString.cpp */,
+				D40F2B391FCBF13600A7B12F /* SkylerString.hpp */,
+			);
+			path = SkylerString;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D40F2B2D1FCBF11A00A7B12F /* SkylerString */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D40F2B351FCBF11A00A7B12F /* Build configuration list for PBXNativeTarget "SkylerString" */;
+			buildPhases = (
+				D40F2B2A1FCBF11A00A7B12F /* Sources */,
+				D40F2B2B1FCBF11A00A7B12F /* Frameworks */,
+				D40F2B2C1FCBF11A00A7B12F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkylerString;
+			productName = SkylerString;
+			productReference = D40F2B2E1FCBF11A00A7B12F /* SkylerString */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D40F2B261FCBF11A00A7B12F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = counterpoint;
+				TargetAttributes = {
+					D40F2B2D1FCBF11A00A7B12F = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = D40F2B291FCBF11A00A7B12F /* Build configuration list for PBXProject "SkylerString" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D40F2B251FCBF11A00A7B12F;
+			productRefGroup = D40F2B2F1FCBF11A00A7B12F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D40F2B2D1FCBF11A00A7B12F /* SkylerString */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D40F2B2A1FCBF11A00A7B12F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D40F2B3A1FCBF13600A7B12F /* SkylerString.cpp in Sources */,
+				D40F2B321FCBF11A00A7B12F /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D40F2B331FCBF11A00A7B12F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D40F2B341FCBF11A00A7B12F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D40F2B361FCBF11A00A7B12F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D40F2B371FCBF11A00A7B12F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D40F2B291FCBF11A00A7B12F /* Build configuration list for PBXProject "SkylerString" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D40F2B331FCBF11A00A7B12F /* Debug */,
+				D40F2B341FCBF11A00A7B12F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D40F2B351FCBF11A00A7B12F /* Build configuration list for PBXNativeTarget "SkylerString" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D40F2B361FCBF11A00A7B12F /* Debug */,
+				D40F2B371FCBF11A00A7B12F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D40F2B261FCBF11A00A7B12F /* Project object */;
+}
