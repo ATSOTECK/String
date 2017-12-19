@@ -12,6 +12,7 @@
 #include "StringList.hpp"
 
 #define TEST(x) std::cerr << "L" <<  __LINE__ << " Test: " << x << " : "
+#define ln() std::cerr << std::endl
 
 namespace {
     int tests = 0;
@@ -36,7 +37,7 @@ bool expect(T e, T g) {
     ++tests;
     bool result = e == g;
     
-    std::cerr << "Expect " << e << ", got " << g;
+    std::cerr << "Expect \"" << e << "\", got \"" << g << "\"";
     if (result) {
         return pass();
     } else {
@@ -48,7 +49,7 @@ bool expect(const String &e, const String &g) {
     ++tests;
     bool result = e == g;
     
-    std::cerr << "Expect " << e << ", got " << g;
+    std::cerr << "Expect \"" << e << "\", got \"" << g << "\"";
     if (result) {
         return pass();
     } else {
@@ -605,6 +606,9 @@ void convertTest() {
 }
 
 void stringListTest() {
+    std::cerr << "Begin stringListTest()" << std::endl;
+    int currentFails = fails;
+
     StringList list;
     list.append("hello");
     list.append("there");
@@ -621,14 +625,164 @@ void stringListTest() {
     list.append("in");//12
     
     int i = list.indexOf("world");
-    std::cerr << i << std::endl;
+    TEST("list.indexOf(\"world\")"); expect(3, i);
+    //std::cerr << i << std::endl;
     i = list.indexOfFirst("world");
-    std::cerr << i << std::endl;
+    TEST("list.indexOfFirst(\"world\")"); expect(3, i);
+    //std::cerr << i << std::endl;
     i = list.indexOfLast("world");
-    std::cerr << i << std::endl;
+    TEST("list.indexOfLast(\"world\")"); expect(8, i);
+    //std::cerr << i << std::endl;
+
+    TEST("list.count() == 13"); expect((size_t)13, list.count());
+    TEST("list.clear()");
+    list.clear();
+    TEST("list.count() == 0"); expect((size_t)0, list.count());
+
+    list.append("hi");
+    list.append("ho");
+    list.append("he");
+
+    String join = list.join(", ");
+    TEST("list.join(\", \")"); expect("hi, ho, he", join);
+
+    String joinc = list.join('|');
+    TEST("list.join('|')"); expect("hi|ho|he", joinc);
+
+    String at = list.at(1);
+    TEST("list.at(1)"); expect("ho", at);
+    at = list.at(-1);
+    TEST("list.at(-1)"); expect("", at);
+    at = list.at(12);
+    TEST("list.at(12)"); expect("", at);
+
+    list.erase(1);
+    TEST("list.erase(1)");
+    joinc = list.join('|');
+    expect("hi|he", joinc);
+
+    list.erase(-1);
+    TEST("list.erase(-1)");
+    joinc = list.join('|');
+    expect("hi|he", joinc);
+
+    list.erase(12);
+    TEST("list.erase(12)");
+    joinc = list.join('|');
+    expect("hi|he", joinc);
+
+    list.clear();
+    list.append("hi");
+    list.append("ho");
+    list.append("he");//<
+    list.append("ni");//<
+    list.append("no");//<
+    list.append("ne");
+
+    list.erase(2, 4);
+    TEST("list.erase(2, 4)");
+    joinc = list.join('|');
+    expect("hi|ho|ne", joinc);
+
+    list.erase(-1, 4);
+    TEST("list.erase(-1, 4)");
+    joinc = list.join('|');
+    expect("hi|ho|ne", joinc);
+
+    list.erase(2, -4);
+    TEST("list.erase(2, -4)");
+    joinc = list.join('|');
+    expect("hi|ho|ne", joinc);
+
+    list.erase(4, 2);
+    TEST("list.erase(4, 2)");
+    joinc = list.join('|');
+    expect("hi|ho|ne", joinc);
+
+    list.erase(2, 40);
+    TEST("list.erase(2, 40)");
+    joinc = list.join('|');
+    expect("hi|ho|ne", joinc);
+
+    list.erase(20, 4);
+    TEST("list.erase(20, 4)");
+    joinc = list.join('|');
+    expect("hi|ho|ne", joinc);
+
+    list.removeFirst();
+    TEST("list.removeFirst()"); expect("ho", list.at(0));
+    TEST("list.count() == 2"); expect((size_t)2, list.count());
+    list.removeLast();
+    TEST("list.removeLast()"); expect("ho", list.at(list.count() - 1));
+    TEST("list.count() == 1"); expect((size_t)1, list.count());
+
+    list.clear();
+    list.append("hi");
+    list.append("ho");
+    list.append("he");
+    
+    String ta = list.takeAt(1);
+    TEST("list.takeAt(1)"); expect("ho", ta);
+    TEST("list.count()"); expect((size_t)2, list.count());
+
+    list.clear();
+    list.append("hi");
+    list.append("ho");
+    list.append("he");
+    
+    String tf = list.takeFirst();
+    TEST("list.takeFirst()"); expect("hi", tf);
+    TEST("list.count()"); expect((size_t)2, list.count());
+
+    list.clear();
+    list.append("hi");
+    list.append("ho");
+    list.append("he");
+
+    String tl = list.takeLast();
+    TEST("list.takeLast()"); expect("he", tl);
+    TEST("list.count()"); expect((size_t)2, list.count());
+
+    TEST("list.first()"); expect("hi", list.first());
+    TEST("list.last()"); expect("ho", list.last());
+
+    TEST("list.IsEmpty()"); expect(false, list.isEmpty());
+    list.eraseAll();
+    TEST("list.IsEmpty()"); expect(true, list.isEmpty());
+
+    list.append("hi");
+    list.append("ho");
+    list.append("he");
+
+    list.insert(1, "yo");
+    TEST("list.at(1)"); expect("yo", list.at(1));
+    TEST("list.count()"); expect((size_t)4, list.count());
+
+    list.insert(-1, "bo");
+    TEST("list.count()"); expect((size_t)4, list.count());
+
+    list.insert(4, "bo");
+    TEST("list.count()"); expect((size_t)4, list.count());
+
+    list.prepend("lo");
+    TEST("list.first()"); expect("lo", list.first());
+    TEST("list.count()"); expect((size_t)5, list.count());
+
+    for (int i = 0; i < 10; ++i) {
+        std::cerr << list.getRandom() << " ";
+    }
+    ln();
+    
+    if (currentFails != fails) {
+        std::cerr << "stringListTest() FAILED" << std::endl << std::endl;
+    } else {
+        std::cerr << "stringListTest() PASSED" << std::endl << std::endl;
+    }
 }
 
 int main(int argc, const char * argv[]) {
+    srand(time(NULL));
+
     setTest();
     equalityTest();
     constructorTest();
@@ -645,14 +799,26 @@ int main(int argc, const char * argv[]) {
     miscTest();
     convertTest();
     
-    std::cerr << std::endl;
+    //std::cerr << std::endl;
     std::cerr << "===========RESULTS===========" << std::endl;
     std::cerr << tests << " tests run." << std::endl;
     std::cerr << passes << "/" << tests << " passed." << std::endl;
     std::cerr << fails << "/" << tests << " failed." << std::endl;
     std::cerr << "=============================" << std::endl;
+    std::cerr << std::endl;
     
+    tests = 0;
+    passes = 0;
+    fails = 0;
+
     stringListTest();
+
+    //std::cerr << std::endl;
+    std::cerr << "===========RESULTS===========" << std::endl;
+    std::cerr << tests << " tests run." << std::endl;
+    std::cerr << passes << "/" << tests << " passed." << std::endl;
+    std::cerr << fails << "/" << tests << " failed." << std::endl;
+    std::cerr << "=============================" << std::endl;
     
     return 0;
 }

@@ -75,9 +75,10 @@ public:
     void swap(int i, int j);
 
     std::vector<String> toStdVector() const;
+    const String *data() const;
 
 private:
-    std::vector<String> data;
+    std::vector<String> _data;
 };
 
 #endif /* StringList_hpp */
