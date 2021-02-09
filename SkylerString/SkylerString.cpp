@@ -25,6 +25,7 @@
 #include "SkylerString.hpp"
 
 #include <cstdio>
+#include <cassert>
 #include <stdlib.h>
 
 #ifdef N_MAC
@@ -161,7 +162,7 @@ bool isNewline(char c) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-uint32 strLen(String str) {
+uint32 strLen(const String &str) {
     uint32 len = 0;
     while (str.str[len++] != '\0') {}
     
@@ -193,15 +194,11 @@ String toString(uint32 n) {
 }
 
 String toUpper(const String &str) {
-    String retStr = str;
-    retStr.toUpper();
-    return retStr;
+    return str.toUpper();
 }
 
 String toLower(const String &str) {
-    String retStr = str;
-    retStr.toLower();
-    return retStr;
+    return str.toLower();
 }
 
 void copyStr(char *dest, const char *src, uint64 size, int64 start) {
@@ -213,7 +210,7 @@ void copyStr(char *dest, const char *src, uint64 size, int64 start) {
 ///////////////////////////////////////////////////////////////////////////////
 
 String::String() :
-    str(0),
+    str(null),
     length(0),
     size(0)
 {
@@ -221,7 +218,7 @@ String::String() :
 }
 
 String::String(const String &other) :
-    str(0),
+    str(null),
     length(0),
     size(0)
 {
@@ -229,7 +226,7 @@ String::String(const String &other) :
 }
 
 String::String(const char *s) :
-    str(0),
+    str(null),
     length(0),
     size(0)
 {
@@ -237,7 +234,7 @@ String::String(const char *s) :
 }
 
 String::String(const std::string &s) :
-    str(0),
+    str(null),
     length(0),
     size(0)
 {
@@ -245,7 +242,7 @@ String::String(const std::string &s) :
 }
 
 String::String(char c) :
-    str(0),
+    str(null),
     length(0),
     size(0)
 {
@@ -261,7 +258,7 @@ String::String(char c) :
 }
 
 String::String(int n) :
-    str(0),
+    str(null),
     length(0),
     size(0)
 {
@@ -271,18 +268,19 @@ String::String(int n) :
 }
 
 String::String(uint32 n) :
-    str(0),
+    str(null),
     length(0),
     size(0)
 {
     char *tmp = new char[128];
+    memset(tmp, 0, 128);
     uitoa(n, tmp, 10);
     *this = (const char*)tmp;
 }
 
 String::~String() {
     if (str) {
-        str = 0;
+        str = null;
         free(str);
     }
     
@@ -293,7 +291,7 @@ String::~String() {
 void String::init(uint64 buffSize) {
     if (str) {
         delete[] str;
-        str = 0;
+        str = null;
     }
     
     size = buffSize + 1;
@@ -318,6 +316,8 @@ void String::resize(uint64 newLength) {
             
             if (length != 0) {
                 copyStr(newStr, str, length);
+            } else {
+                memset(newStr, 0, size);
             }
             
             delete[] str;
@@ -369,7 +369,7 @@ void String::append(const String &string, uint64 buffSize) {
  */
 char *String::c_str() const {
     char *s = new char[length + 1];
-    strcpy(s, str);
+    strcpy(s, str); //TODO(Skyler): Depreciated.
     return s;
 }
 
@@ -443,7 +443,7 @@ bool String::endsWith(const String &s, bool ignoreWhitespace) const {
     return end == tmp;
 }
 
-String String::stringAfterLast(char c) {
+String String::stringAfterLast(char c) const {
     String ret = "";
     String tmp;
     
@@ -459,7 +459,7 @@ String String::stringAfterLast(char c) {
     return ret;
 }
 
-String String::stringAfterLast(char c, char c1) {
+String String::stringAfterLast(char c, char c1) const {
     String ret = "";
     String tmp;
     
@@ -475,7 +475,7 @@ String String::stringAfterLast(char c, char c1) {
     return ret;
 }
 
-String String::stringAfterFirst(char c) {
+String String::stringAfterFirst(char c) const {
     String tmp;
     bool found = false;
     
@@ -498,7 +498,7 @@ String String::stringAfterFirst(char c) {
     }
 }
 
-String String::stringAfterFirst(char c, char c1) {
+String String::stringAfterFirst(char c, char c1) const {
     String tmp;
     bool found = false;
     
@@ -521,7 +521,7 @@ String String::stringAfterFirst(char c, char c1) {
     }
 }
 
-String String::stringBeforeFirst(char c) {
+String String::stringBeforeFirst(char c) const {
     String ret = "";
     String tmp;
     
@@ -537,7 +537,7 @@ String String::stringBeforeFirst(char c) {
     return ret;
 }
 
-String String::stringBeforeFirst(char c, char c1) {
+String String::stringBeforeFirst(char c, char c1) const {
     String ret = "";
     String tmp;
     
@@ -553,7 +553,7 @@ String String::stringBeforeFirst(char c, char c1) {
     return ret;
 }
 
-String String::stringBeforeLast(char c) {
+String String::stringBeforeLast(char c) const {
     String tmp;
     bool found = false;
     int64 last = -1;
@@ -576,7 +576,7 @@ String String::stringBeforeLast(char c) {
     }
 }
 
-String String::stringBeforeLast(char c, char c1) {
+String String::stringBeforeLast(char c, char c1) const {
     String tmp;
     bool found = false;
     int64 last = -1;
@@ -608,8 +608,8 @@ void String::erase(size_t pos, size_t count) {
     tmp.erase(pos, count);
     *this = tmp;
     
-    return; //ffs
-    
+    //return; //ffs
+    /*
     if (pos == 0) {
         char *tmp = new char[size - count];
         copyStr(tmp, str, size - count, pos + count);
@@ -632,6 +632,7 @@ void String::erase(size_t pos, size_t count) {
         delete[] part2;
         delete[] tmp;
     }
+    */
 }
 
 void String::clear() {
@@ -740,24 +741,20 @@ double String::toDouble() const {
     return atof(str);
 }
 
-char String::operator[](int64 index) {
-    if (!str) {
-        return '\0';
+char &String::operator[](int64 index) {
+    if (str == null) {
+        assert(false); //TODO(Skyler): Handle this better.
     }
-    
+
     if (index > length || index < 0) {
-        return '\0';
+        return str[length];
     }
     
     return str[index];
 }
 
 char String::operator[](int64 index) const {
-    if (!str) {
-        return '\0';
-    }
-    
-    if (index > length || index < 0) {
+    if (str == null || index > length || index < 0) {
         return '\0';
     }
     
@@ -765,6 +762,10 @@ char String::operator[](int64 index) const {
 }
 
 String &String::operator=(const String &right) {
+    if (this == &right) {
+        return *this;
+    }
+
     if (right.length == 0) {
         resize(1);
         length = 0;
@@ -778,7 +779,12 @@ String &String::operator=(const String &right) {
 }
 
 String &String::operator=(const char *s) {
-    length = strlen(s);
+    if (s == null) {
+        length = 0;
+    } else {
+        length = strlen(s);
+    }
+
     if (length == 0) {
         resize(1);
         length = 0;
@@ -792,7 +798,8 @@ String &String::operator=(const char *s) {
 }
 
 String &String::operator=(const std::string &s) {
-    length = strlen(s.c_str());
+    length = s.length();
+
     if (length == 0) {
         resize(1);
         length = 0;
@@ -820,7 +827,7 @@ String &String::operator=(const std::string &s) {
 
 //TODO: FIX!
 
-String String::operator+(const String &right) {
+String String::operator+(const String &right) const {
     String s;
     s += *this;
     s += right;
@@ -828,7 +835,7 @@ String String::operator+(const String &right) {
     return s;
 }
 
-String String::operator+(const char *right) {
+String String::operator+(const char *right) const {
     String s;
     s += *this;
     s += right;
@@ -874,7 +881,7 @@ String String::operator+=(std::string s) {
     return *this;
 }
 
-String operator+(char *left, String right) {
+String operator+(char *left, const String &right) {
     String s;
     s += left;
     s += right;
@@ -882,7 +889,7 @@ String operator+(char *left, String right) {
     return s;
 }
 
-String operator+(std::string left, String right) {
+String operator+(const std::string &left, const String &right) {
     String s;
     s += left.c_str();
     s += right;
@@ -898,11 +905,11 @@ bool operator!=(const String &left, const String &right) {
     return (strcmp(left.str, right.str) != 0);
 }
 
-bool operator ==(String left, const char *right) {
+bool operator ==(const String &left, const char *right) {
     return (strcmp(left.str, right) == 0);
 }
 
-bool operator !=(String left, const char *right) {
+bool operator !=(const String &left, const char *right) {
     return (strcmp(left.str, right) != 0);
 }
 
@@ -910,7 +917,7 @@ String::operator std::string() const {
     return toStdString();
 }
 
-std::ostream &operator<<(std::ostream &left, String right) {
+std::ostream &operator<<(std::ostream &left, const String &right) {
     if (!right.str) {
         left << "";
         return left;

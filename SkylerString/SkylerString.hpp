@@ -44,6 +44,8 @@
 #	define N_FREEBSD
 #endif
 
+#define null nullptr
+
 typedef int8_t  int8;
 typedef int16_t int16;
 typedef int32_t int32;
@@ -78,7 +80,7 @@ bool isWhitespace(char c);
 bool isNewline(char c);
 
 //String functions
-uint32 strLen(String str);
+uint32 strLen(const String &str);
 
 String toString(uint32 n);
 
@@ -117,17 +119,17 @@ struct String {
     bool startsWith(const String &s, bool ignoreWhitespace = false) const;
     bool endsWith(const String &s, bool ignoreWhitespace = false) const;
     
-    String stringAfterLast(char c);
-    String stringAfterLast(char c, char c1);
+    String stringAfterLast(char c) const;
+    String stringAfterLast(char c, char c1) const;
     
-    String stringAfterFirst(char c);
-    String stringAfterFirst(char c, char c1);
+    String stringAfterFirst(char c) const;
+    String stringAfterFirst(char c, char c1) const;
     
-    String stringBeforeFirst(char c);
-    String stringBeforeFirst(char c, char c1);
+    String stringBeforeFirst(char c) const;
+    String stringBeforeFirst(char c, char c1) const;
     
-    String stringBeforeLast(char c);
-    String stringBeforeLast(char c, char c1);
+    String stringBeforeLast(char c) const;
+    String stringBeforeLast(char c, char c1) const;
     
     void erase(size_t pos, size_t count = 1);
     void clear();
@@ -154,36 +156,36 @@ struct String {
     float toFloat() const;
     double toDouble() const;
     
-    char operator[](int64 index);
-    char operator[](int64 index) const;
+    char &operator[](int64 index);
+    char  operator[](int64 index) const;
     
     String &operator=(const String &right);
     String &operator=(const char *s);
     String &operator=(const std::string &s);
     //String &operator=(const char c);
-    String operator+(const String &right);
-    String operator+(const char *right);
+    String operator+(const String &right) const;
+    String operator+(const char *right) const;
     String operator+=(const String &right);
     String operator+=(char c);
     String operator+=(const char *c);
     String operator+=(std::string s);
     
-    operator std::string() const;
+    explicit operator std::string() const;
     
     char *str;
     int64 length; //length of the string
     int64 size; //size of the space allocated to the string
 };
 
-String operator+(char *left, String right);
-String operator+(std::string left, String right);
+String operator+(char *left, const String &right);
+String operator+(const std::string &left, const String &right);
 
 bool operator ==(const String &left, const String &right);
 bool operator !=(const String &left, const String &right);
 
-bool operator ==(String left, const char *right);
-bool operator !=(String left, const char *right);
+bool operator ==(const String &left, const char *right);
+bool operator !=(const String &left, const char *right);
 
-std::ostream &operator<<(std::ostream &left, String right);
+std::ostream &operator<<(std::ostream &left, const String &right);
 
 #endif

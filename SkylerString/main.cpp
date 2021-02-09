@@ -6,6 +6,7 @@
 //  Copyright © 2017 counterpoint. All rights reserved.
 //
 
+#include <ctime>
 #include <iostream>
 
 #include "SkylerString.hpp"
@@ -768,7 +769,7 @@ void stringListTest() {
     TEST("list.first()"); expect("lo", list.first());
     TEST("list.count()"); expect((size_t)5, list.count());
 
-    for (int i = 0; i < 10; ++i) {
+    for (int j = 0; j < 10; ++j) {
         std::cerr << list.getRandom() << " ";
     }
     ln();
